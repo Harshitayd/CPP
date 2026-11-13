@@ -4,26 +4,18 @@ public:
         int i = num1.size() - 1;
         int j = num2.size() - 1;
         int carry = 0;
-        string ans = "";
+        string result = "";
 
-        while (i >= 0 || j >= 0 || carry) {
-            int sum = carry;
+        while (i >= 0 || j >= 0 || carry > 0) {
+            int n1 = (i >= 0) ? num1[i--] - '0' : 0;
+            int n2 = (j >= 0) ? num2[j--] - '0' : 0;
 
-            if (i >= 0) {
-                sum += num1[i] - '0';
-                i--;
-            }
-
-            if (j >= 0) {
-                sum += num2[j] - '0';
-                j--;
-            }
-
-            ans += (sum % 10) + '0';
-            carry = sum / 10;
+            int total = n1 + n2 + carry;
+            result.push_back((total % 10) + '0');
+            carry = total / 10;
         }
 
-        reverse(ans.begin(), ans.end());
-        return ans;
+        reverse(result.begin(), result.end());
+        return result;
     }
 };
